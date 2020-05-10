@@ -46,6 +46,7 @@ Resources:
       # The directory creation process creates a directory administrator account with the user name Administrator and this password
       Password: !Join ['', ['{{resolve:secretsmanager:', !Ref DirectoryCredentials, ':SecretString:password}}' ]]
       Size: Small
+      EnableSso: true
       VpcSettings:
         SubnetIds: # we need only 2 subnets (even if more provided)
           - !Select [ 0, !Ref PrivateSubnets ]

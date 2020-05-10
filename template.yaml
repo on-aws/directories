@@ -47,6 +47,7 @@ Resources:
       Password: !Join ['', ['{{resolve:secretsmanager:', !Ref DirectoryCredentials, ':SecretString:password}}' ]]
       Size: Small
       EnableSso: true
+      CreateAlias: true # The alias is used to construct the access URL for the directory, such as http://<alias>.awsapps.com
       VpcSettings:
         SubnetIds: # we need only 2 subnets (even if more provided)
           - !Select [ 0, !Ref PrivateSubnets ]

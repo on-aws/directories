@@ -47,7 +47,9 @@ Resources:
       Password: !Join ['', ['{{resolve:secretsmanager:', !Ref DirectoryCredentials, ':SecretString:password}}' ]]
       Size: Small
       VpcSettings:
-        SubnetIds: !Ref PrivateSubnets
+        SubnetIds: # we need only 2 subnets (even if more provided)
+          - !Select [ 0, !Ref PrivateSubnets ]
+          - !Select [ 1, !Ref PrivateSubnets ]
         VpcId: !Ref VPC
 
 Outputs:
